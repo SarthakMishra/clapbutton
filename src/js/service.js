@@ -23,7 +23,8 @@ export class Service {
       return 0;
     }
 
-    return await this.http.get('/clap', { name: 'url', value: url });
+    const response = await this.http.get('/clap', { name: 'url', value: url });
+    return parseInt(response.claps, 10); // Assuming response is an object { claps: "number" }
   }
 
   /**
