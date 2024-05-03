@@ -60,8 +60,13 @@ export class Controller {
     service
       .getClaps(model.url)
       .then(count => {
-        model.claps = count;
-        view.showCount(model.claps);
+        if (!isNaN(count)) {
+          model.claps = count;
+          view.showCount(model.claps);
+        } else {
+          console.error("Invalid clap count received:", count);
+        }
+        
       })
       .catch(e => console.log(e));
   }
